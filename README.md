@@ -9,11 +9,15 @@ TMECircDB (Tumor MicroEnvironment specific CircRNA Database, https://www.maherla
 ```sh TMECircDB_CIRCexplorer_parse.sh```
 
 3. Annotate backsplice junctions using known transcripts with CIRCexplorer
+
 (1) Individual samples: ```sh TMECircDB_CIRCexplorer_annotate.sh```
+
 (2) Summarize all samples and make circRNA expression matrix: ```Rscript TMECircDB_CIRCexplorer_sum.r```
 
 4. Quantify linear gene reads with featureCounts
+
 (1) Individual samples: ```sh TMECircDB_featureCounts.sh```
+
 (2) Summarize all samples and make linear gene expression matrix: ```Rscript TMECircDB_featureCounts_sum.r```  
 
 ## Differential expression analysis & heatmap
@@ -55,7 +59,9 @@ Use signature matrix generated in step 3. The following paremeters were used in 
 
 6. Run NNLS model to estimate cell-type specific expression & benchmark NNLS predictions against ground truth for each sample
 For demonstration purposes, we have included NNLS predictions and benchmarking results at https://github.com/ChrisMaherLab/TMECircDB/sample_files.
+
 (1) For circRNAs: ```Rscript TMECircDB_NNLS_circ.r```
+
 (2) For linear genes: ```Rscript TMECircDB_NNLS_linear_gene.r```
 
 ## How to cite TMECircDB?  
