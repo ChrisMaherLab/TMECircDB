@@ -1,0 +1,8 @@
+cell_subtypes	KUL01	KUL19	KUL21	KUL28	KUL30	KUL31
+Epithelial cells	200	107	174	7	40	85
+Stromal cells	167	161	142	90	163	39
+Myeloids	104	61	58	10	21	11
+T cells	93	287	95	21	7	73
+B cells	38	202	44	39	105	59
+Mast cells	2	6	7	4	2	1
+total_no_cells	604	824	520	171	338	268
