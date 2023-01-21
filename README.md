@@ -57,7 +57,7 @@ Use signature matrix generated in step 3. The following paremeters were used in 
 `Mixture file: crc_matched_patients_linear_tpm_mixture.txt`
 `Disable quantile normalization: true`
 
-6. Run NNLS model to estimate cell-type specific expression & benchmark NNLS predictions against ground truth for each sample
+6. Run Non-Negative Least Squares (NNLS) model to estimate cell-type specific expression & benchmark NNLS predictions against ground truth for each sample
 For demonstration purposes, we have included NNLS predictions and benchmarking results at https://github.com/ChrisMaherLab/TMECircDB/sample_files.
 
 (1) For circRNAs: ```Rscript TMECircDB_NNLS_circ.r```
