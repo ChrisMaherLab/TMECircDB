@@ -1,5 +1,5 @@
 # TMECirc
-TMECircDB (Tumor MicroEnvironment specific CircRNA Database, [placeholder url]) is a integrative computational pipeline that leverages published scRNA-Seq datasets (Gene Expression Omnibus accession GSE144735 and GSE81861) and our own unique matched metastatic colorectal cancer (mCRC) patient cohort (Gene Expression Omnibus accession GSE221240) to model the cell-type specific expression of circular RNAs (circRNA) in mCRC. The resource has 11,682 circRNAs predicted to have significant cell-type specific expression, including 667 that are exclusively expressed in one cell type. 361 circRNAs showed dysregulation in mCRC proressgion and are hence termed Circular RNAs Associated with Metastasis (CRAMS). We hope this transcriptomic and statistical analysis will serve as a resource for evaluating the cell-type specificity circRNAs that could aide future mechanistic studies exploring their function in cancer. Here we provide scripts and steps used to generate the data.  
+TMECircDB (Tumor MicroEnvironment specific CircRNA Database, [placeholder url]) is a integrative computational pipeline that leverages published scRNA-Seq datasets (Gene Expression Omnibus accession `GSE144735` and `GSE81861`) and our own unique matched metastatic colorectal cancer (mCRC) patient cohort (Gene Expression Omnibus accession `GSE221240`) to model the cell-type specific expression of circular RNAs (circRNA) in mCRC. The resource has 11,682 circRNAs predicted to have significant cell-type specific expression, including 667 that are exclusively expressed in one cell type. 361 circRNAs showed dysregulation in mCRC proressgion and are hence termed `Circular RNAs Associated with Metastasis (CRAMS)`. We hope this transcriptomic and statistical analysis will serve as a resource for evaluating the cell-type specificity circRNAs that could aide future mechanistic studies exploring their function in cancer. Here we provide scripts and steps used to generate the data.  
 
 ## RNA-Seq alignment and circRNA detection
 1. Aligh FASTQ files with STAR
@@ -26,7 +26,7 @@ TMECircDB (Tumor MicroEnvironment specific CircRNA Database, [placeholder url]) 
 ## Cell-type specific expression modeling
 1. Download or pre-process scRNA-Seq expression matrices
 Your working directory should contain a cell annotation file and an expression matrix file.
-For demonstration purposes, please see GEO accesion code GSE144735: https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE144735
+For demonstration purposes, please see GEO accesion code `GSE144735`: https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE144735
 
 2. Down-sample scRNA-Seq data and make CIBERSORT reference
 ```Rscript TMECircDB_scRNA_cibersort_reference.r```
@@ -36,7 +36,7 @@ For demonstration purposes, we have included all outputs from this script and ou
 
 For all other questions related to CIBERSORT, please refer to CIBERSORT tutorial: https://cibersortx.stanford.edu/tutorial.php.
 
-3. Run CIBERSORT's “Create Signature Matrix” module to identify signature genes
+3. Run CIBERSORT's `Create Signature Matrix` module to identify signature genes
 Use scRNA_Seq_reference generated in step 2. The following paremeters were used in our study:
 `Single cell reference matrix file: scRNA_Seq_reference_GSE144735_full.txt`
 `Disable quantile normalization: true`
@@ -49,9 +49,9 @@ Use scRNA_Seq_reference generated in step 2. The following paremeters were used 
 `Filter non-hematopoietic genes from signature matrix during construction: false`
 
 4. Make CIBERSORT mixture file
-Use tpm.rds generated from TMECircDB_featureCounts_sum.r to make the mixture file according to CIBERSORT's instructions.
+Use `tpm.rds` generated from `TMECircDB_featureCounts_sum.r` to make the mixture file according to CIBERSORT's instructions.
 
-5. Run CIBERSORT's “Impute Cell Fractions” module to deconvolve cell type proportions
+5. Run CIBERSORT's `Impute Cell Fractions` module to deconvolve cell type proportions
 Use signature matrix generated in step 3. The following paremeters were used in our study:
 `Signature matrix file: scRNA_Seq_reference_GSE144735_full_inferred_phenoclasses.inferred_refsample.bm.K999.txt`
 `Mixture file: crc_matched_patients_linear_tpm_mixture.txt`
