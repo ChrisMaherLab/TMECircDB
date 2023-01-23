@@ -3,9 +3,11 @@ TMECircDB (Tumor MicroEnvironment specific CircRNA Database, [placeholder url]) 
 
 ## RNA-Seq alignment and circRNA detection
 1. Aligh FASTQ files with STAR
+
 ```sh TMECircDB_STAR_align.sh```
 
 2. Parse chimeric STAR alignments to identify backsplice junctions with CIRCexplorer
+
 ```sh TMECircDB_CIRCexplorer_parse.sh```
 
 3. Annotate backsplice junctions using known transcripts with CIRCexplorer
@@ -21,15 +23,19 @@ TMECircDB (Tumor MicroEnvironment specific CircRNA Database, [placeholder url]) 
 (2) Summarize all samples and make linear gene expression matrix: ```Rscript TMECircDB_featureCounts_sum.r```  
 
 ## Differential expression analysis & heatmap
+
 ```Rscript TMECircDB_edgeR.r```
 
 ## Cell-type specific expression modeling
 1. Download or pre-process scRNA-Seq expression matrices
+
 Your working directory should contain a cell annotation file and an expression matrix file.
 For demonstration purposes, please see GEO accesion code `GSE144735`: https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE144735
 
 2. Down-sample scRNA-Seq data and make CIBERSORT reference
+
 ```Rscript TMECircDB_scRNA_cibersort_reference.r```
+
 CIBERSORT has a size limit for the scRNA-Seq reference, so it is advisable to select a random down-sample if your scRNA-Seq data has too many cells. In our manuscript, we used 10% of all cells, while keeping the cell-type proportions consistent with the ground truth.
 
 For demonstration purposes, we have included all outputs from this script and our run of the CIBERSORT deconvolution at https://github.com/ChrisMaherLab/TMECircDB/sample_files.
@@ -37,7 +43,9 @@ For demonstration purposes, we have included all outputs from this script and ou
 For all other questions related to CIBERSORT, please refer to CIBERSORT tutorial: https://cibersortx.stanford.edu/tutorial.php.
 
 3. Run CIBERSORT's `Create Signature Matrix` module to identify signature genes
+
 Use scRNA_Seq_reference generated in step 2. The following paremeters were used in our study:
+
 `Single cell reference matrix file: scRNA_Seq_reference_GSE144735_full.txt`
 `Disable quantile normalization: true`
 `kappa: 999`
@@ -49,15 +57,19 @@ Use scRNA_Seq_reference generated in step 2. The following paremeters were used 
 `Filter non-hematopoietic genes from signature matrix during construction: false`
 
 4. Make CIBERSORT mixture file
+
 Use `tpm.rds` generated from `TMECircDB_featureCounts_sum.r` to make the mixture file according to CIBERSORT's instructions.
 
 5. Run CIBERSORT's `Impute Cell Fractions` module to deconvolve cell type proportions
+
 Use signature matrix generated in step 3. The following paremeters were used in our study:
+
 `Signature matrix file: scRNA_Seq_reference_GSE144735_full_inferred_phenoclasses.inferred_refsample.bm.K999.txt`
 `Mixture file: crc_matched_patients_linear_tpm_mixture.txt`
 `Disable quantile normalization: true`
 
 6. Run Non-Negative Least Squares (NNLS) model to estimate cell-type specific expression & benchmark NNLS predictions against ground truth for each sample
+
 For demonstration purposes, we have included NNLS predictions and benchmarking results at https://github.com/ChrisMaherLab/TMECircDB/sample_files.
 
 (1) For circRNAs: ```Rscript TMECircDB_NNLS_circ.r```
