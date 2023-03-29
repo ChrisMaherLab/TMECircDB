@@ -26,6 +26,12 @@ TMECircDB (Tumor MicroEnvironment specific CircRNA DataBase, https://www.maherla
 
 ```Rscript TMECircDB_edgeR.r```
 
+If you wish to run more DE tests to validate the DE candidates, CIRIquant and CircTest can be run at:
+
+```Rscript TMECircDB_CIRIquant.sh```
+
+```Rscript TMECircDB_CircTest.r```
+
 ## Cell-type specific expression modeling
 1. Download or pre-process scRNA-Seq expression matrices
 
